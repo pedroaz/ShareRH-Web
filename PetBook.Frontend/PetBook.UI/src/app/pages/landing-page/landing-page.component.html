@@ -1,0 +1,30 @@
+
+<h1>Bem vindos e bem vindas ao Pet Book!</h1>
+
+<h2>Se deseja entrar va para a nossa tela de login:</h2>
+<p-button (click)="goToLogin()" label="Login"></p-button>
+
+<h2>Veja o que os nossos usuários falam do nosso site: </h2>
+
+<ul>
+    <li>
+        <h3>Acesso todo dia</h3>
+        <p-rating [(ngModel)]="maxAmountOfStars" [cancel]="false"></p-rating>
+    </li>
+    <li>
+        <h3>Devem ter demorado um montão para fazer o site</h3>
+        <p-rating [(ngModel)]="maxAmountOfStars" [cancel]="false"></p-rating>
+    </li>
+    <li>
+        <h3>Confiei na Bettina e deu errado, se alguém está lendo isso por favor estou precisando de um aumento</h3>
+        <p-rating [(ngModel)]="maxAmountOfStars" [cancel]="false"></p-rating>
+    </li>
+    <li>
+        <h3>Adoro animais!</h3>
+        <p-rating [(ngModel)]="maxAmountOfStars" [cancel]="false"></p-rating>
+    </li>
+</ul>
+
+<div>
+    
+</div>

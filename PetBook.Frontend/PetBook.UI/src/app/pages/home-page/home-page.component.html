@@ -1,0 +1,44 @@
+<app-top-menu></app-top-menu>
+
+<p-button (click)="refresh()" label="Refresh Data"></p-button>
+
+<h1>Pets: </h1>
+<p-table [value]="pets" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Photo</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pet>
+        <tr>
+            <td>{{pet.id}}</td>
+            <td>{{pet.name}}</td>
+            <td>{{pet.age}}</td>
+            <td>{{pet.photoId}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<h1>Usuários: </h1>
+<p-table [value]="users" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Photo</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.role}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
