@@ -13,9 +13,9 @@ namespace PetBook.Services.UsersServices
 {
     public class UserService : IUserService
     {
-        private readonly PetBookDatabaseContext _dbContext;
+        private readonly IPetBookDatabaseContext _dbContext;
 
-        public UserService(PetBookDatabaseContext dbContext)
+        public UserService(IPetBookDatabaseContext dbContext)
         {
             _dbContext = dbContext;
         }

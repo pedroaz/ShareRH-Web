@@ -55,10 +55,9 @@ namespace PetBook.Application
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsMySuperSecretKey@123"))
                 };
             });
-
-
-
-            services.AddDbContext<PetBookDatabaseContext>();
+            
+            SetupDatabase(services);
+            
             services.AddCors(options => {
                 options.AddPolicy(name: CorsPolicyName,
                                   builder => {
@@ -94,6 +93,17 @@ namespace PetBook.Application
                 endpoints.MapControllers();
                 endpoints.MapHub<PetBookHub>("/petBookHub");
             });
+        }
+
+        private void SetupDatabase(IServiceCollection services)
+        {
+            if (Configuration.GetValue<bool>("UseCloudDatabase"))
+            {
+                services.AddDbContext<IPetBookDatabaseContext, PetBookAzureDatabaseContext>();
+                return;
+            }
+
+            services.AddDbContext<IPetBookDatabaseContext, PetBookDatabaseContext>();
         }
     }
 }

@@ -13,10 +13,10 @@ namespace PetBook.Services.PetsServices
 {
     public class PetService : IPetService
     {
-        private readonly PetBookDatabaseContext _dbContext;
+        private readonly IPetBookDatabaseContext _dbContext;
         private readonly IHubContext<PetBookHub> _hubContext;
 
-        public PetService(PetBookDatabaseContext dbContext, IHubContext<PetBookHub> hubContext)
+        public PetService(IPetBookDatabaseContext dbContext, IHubContext<PetBookHub> hubContext)
         {
             _hubContext = hubContext;
             _dbContext = dbContext;
