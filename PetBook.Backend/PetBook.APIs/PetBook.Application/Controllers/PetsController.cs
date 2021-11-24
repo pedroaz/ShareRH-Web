@@ -32,16 +32,7 @@ namespace PetBook.Application.Controllers
             
         }
 
-        [HttpGet("pets/")]
-        public async Task<IActionResult> GetAll()
-        {
-            try {
-                return Ok(await _petService.GetAll());
-            }
-            catch (Exception e) {
-                return BadRequest(e.Message);
-            }
-        }
+        
 
         [HttpPost("pets/")]
         public async Task<IActionResult> Post([FromBody]Pet pet)
@@ -69,7 +60,7 @@ namespace PetBook.Application.Controllers
         }
 
         /* 
-         * Exercício: Criar o endpoint que atualiza a idade do pet
+         * Exercício 1: Criar o endpoint que atualiza a idade do pet
          1. Anotações na classe
          2. Receber os parâmetros no body
          3. Usar o serviço (IPetService) para fazer o update - UpdatePetAge
@@ -79,10 +70,29 @@ namespace PetBook.Application.Controllers
         //public async Task<IActionResult> Update()
         //{
         //    try {
-                
+
         //    }
         //    catch (Exception e) {
         //    }
         //}
+
+
+        /*
+         * Exerício 2: Colocar autorização na API que retorna todos os PETS
+         * 1. 
+         * 
+         */
+
+
+        [HttpGet("pets/")]
+        public async Task<IActionResult> GetAll()
+        {
+            try {
+                return Ok(await _petService.GetAll());
+            }
+            catch (Exception e) {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
