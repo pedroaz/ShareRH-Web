@@ -9,6 +9,9 @@ using System.Text;
 
 namespace PetBook.Infrastructure.Database
 {
+    /// <summary>
+    /// Database context of the PetBook app. It uses a sql lite implementation to store data
+    /// </summary>
     public class PetBookDatabaseContext : DbContext
     {
         private readonly IConfiguration _configuration;

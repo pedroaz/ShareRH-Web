@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace PetBook.APIs.Application
 {
+    /// <summary>
+    /// Controller responsable to implement all endpoints related to user API
+    /// </summary>
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -20,6 +23,11 @@ namespace PetBook.APIs.Application
             _userService = userService;
         }
 
+        /// <summary>
+        /// Add a user to the database
+        /// </summary>
+        /// <param name="user">User object</param>
+        /// <returns></returns>
         [HttpPost("users/")]
         public async Task<IActionResult> AddUser([FromBody] User user)
         {
@@ -33,6 +41,10 @@ namespace PetBook.APIs.Application
             
         }
 
+        /// <summary>
+        /// Return all users from the database
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("users/")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -44,6 +56,10 @@ namespace PetBook.APIs.Application
             }
         }
 
+        /// <summary>
+        /// Delete all users from the database
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("users/")]
         [Authorize( Roles = "admin")]
         public async Task<IActionResult> DeleteUsers()
@@ -58,6 +74,11 @@ namespace PetBook.APIs.Application
 
         }
 
+        /// <summary>
+        /// Authenticate a user and return the JWT
+        /// </summary>
+        /// <param name="logindData">Username and password</param>
+        /// <returns></returns>
         [HttpPost("users/auth")]
         public async Task<IActionResult> AuthUser([FromBody] LoginData logindData)
         {

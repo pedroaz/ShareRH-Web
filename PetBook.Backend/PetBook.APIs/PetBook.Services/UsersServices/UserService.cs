@@ -20,12 +20,14 @@ namespace PetBook.Services.UsersServices
             _dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task AddUser(User user)
         {
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public bool Auth(string name, string password, out User user)
         {
             user = _dbContext.Users.ToList().Find(_ => _.Name.Equals(name));
@@ -34,17 +36,20 @@ namespace PetBook.Services.UsersServices
             return true;
         }
 
+        /// <inheritdoc/>
         public List<User> GetAllUsers()
         {
             return _dbContext.Users.ToList();
         }
 
+        /// <inheritdoc/>
         public async Task DeleteUsers()
         {
             _dbContext.Users.RemoveRange(_dbContext.Users);
             await _dbContext.SaveChangesAsync();
         }
 
+        /// <inheritdoc/>
         public string GenerateUserToken(User user)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsMySuperSecretKey@123"));

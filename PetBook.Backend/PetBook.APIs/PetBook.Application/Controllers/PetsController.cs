@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace PetBook.Application.Controllers
 {
+    /// <summary>
+    /// Controller responsable to implement all endpoints related to pets API
+    /// </summary>
     [ApiController]
     public class PetsController : ControllerBase
     {
@@ -20,6 +23,11 @@ namespace PetBook.Application.Controllers
             _petService = petService;
         }
 
+        /// <summary>
+        /// Return certain pet depending on the ID
+        /// </summary>
+        /// <param name="id">Pet ID</param>
+        /// <returns></returns>
         [HttpGet("pets/{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -33,7 +41,11 @@ namespace PetBook.Application.Controllers
         }
 
         
-
+        /// <summary>
+        /// Add a pet to the database
+        /// </summary>
+        /// <param name="pet">Pet object</param>
+        /// <returns></returns>
         [HttpPost("pets/")]
         public async Task<IActionResult> Post([FromBody]Pet pet)
         {
@@ -46,6 +58,10 @@ namespace PetBook.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete all pets from the database
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("pets/")]
         [Authorize]
         public async Task<IActionResult> Delete()
@@ -83,7 +99,10 @@ namespace PetBook.Application.Controllers
          * 
          */
 
-
+        /// <summary>
+        /// Return all pets from the database
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("pets/")]
         public async Task<IActionResult> GetAll()
         {

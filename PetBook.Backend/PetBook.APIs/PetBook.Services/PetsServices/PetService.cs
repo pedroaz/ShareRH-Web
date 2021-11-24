@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace PetBook.Services.PetsServices
 {
+    /// <summary>
+    /// Default implementation of IPetService
+    /// </summary>
     public class PetService : IPetService
     {
         private readonly PetBookDatabaseContext _dbContext;
@@ -22,16 +25,19 @@ namespace PetBook.Services.PetsServices
             _dbContext = dbContext;
         }
 
+        /// <inheritdoc/>
         public async Task<List<Pet>> GetAll()
         {
             return await _dbContext.Pets.ToListAsync();
         }
 
+        /// <inheritdoc/>
         public async Task<Pet> GetPet(int id)
         {
             return await _dbContext.Pets.FindAsync(id);
         }
 
+        /// <inheritdoc/>
         public async Task AddPet(Pet pet)
         {
             await _dbContext.Pets.AddAsync(pet);
@@ -39,6 +45,7 @@ namespace PetBook.Services.PetsServices
             await _hubContext.Clients.All.SendAsync("Refresh");
         }
 
+        /// <inheritdoc/>
         public async Task UpdatePetAge(string name, int age)
         {
             var petData = _dbContext.Pets.ToList().Find(_ => _.Name.Equals(name));
@@ -47,6 +54,7 @@ namespace PetBook.Services.PetsServices
             await _hubContext.Clients.All.SendAsync("Refresh");
         }
 
+        /// <inheritdoc/>
         public async Task DeleteAll()
         {
             _dbContext.Pets.RemoveRange(_dbContext.Pets);
