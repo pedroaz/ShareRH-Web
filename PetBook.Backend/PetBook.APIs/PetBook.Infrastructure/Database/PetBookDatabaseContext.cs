@@ -4,6 +4,7 @@ using PetBook.Domain.PetsDomain;
 using PetBook.Domain.UsersDomain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace PetBook.Infrastructure.Database
@@ -22,7 +23,10 @@ namespace PetBook.Infrastructure.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(_configuration["SqlLiteConnection"]);
+            var directoryInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
+            var directory = directoryInfo.Parent.Parent.Parent;
+            var dbPath = $"Data Source={directory}\\petbook.db";
+            optionsBuilder.UseSqlite(dbPath);
             base.OnConfiguring(optionsBuilder);
         }
     }
