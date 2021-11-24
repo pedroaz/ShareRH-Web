@@ -5,6 +5,7 @@ using PetBook.Infrastructure.Database;
 using PetBook.Infrastructure.Hubs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,14 @@ namespace PetBook.Services.PetsServices
         public async Task AddPet(Pet pet)
         {
             await _dbContext.Pets.AddAsync(pet);
+            await _dbContext.SaveChangesAsync();
+            await _hubContext.Clients.All.SendAsync("Refresh");
+        }
+
+        public async Task UpdatePetAge(string name, int age)
+        {
+            var petData = _dbContext.Pets.ToList().Find(_ => _.Name.Equals(name));
+            petData.Age = age;
             await _dbContext.SaveChangesAsync();
             await _hubContext.Clients.All.SendAsync("Refresh");
         }

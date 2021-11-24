@@ -12,5 +12,6 @@ namespace PetBook.Services.PetsServices
         Task AddPet(Pet pet);
         Task<Pet> GetPet(int id);
         Task<List<Pet>> GetAll();
+        Task UpdatePetAge(string name, int age);
     }
 }

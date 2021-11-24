@@ -13,12 +13,10 @@ namespace PetBook.APIs.Application
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ILogger<UsersController> _logger;
         private readonly IUserService _userService;
 
-        public UsersController(ILogger<UsersController> logger, IUserService userService)
+        public UsersController(IUserService userService)
         {
-            _logger = logger;
             _userService = userService;
         }
 
@@ -33,6 +31,17 @@ namespace PetBook.APIs.Application
                 return BadRequest(e.Message);
             }
             
+        }
+
+        [HttpGet("users/")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try {
+                return Ok(_userService.GetAllUsers());
+            }
+            catch (Exception e) {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete("users/")]
@@ -57,18 +66,6 @@ namespace PetBook.APIs.Application
                 if (_userService.Auth(logindData.Name, logindData.Password, out user)) 
                     return Ok(new { Token = _userService.GenerateUserToken(user) });
                 return Unauthorized("Username or password is wrong");
-            }
-            catch (Exception e) {
-                return BadRequest(e.Message);
-            }
-        }
-
-
-        [HttpGet("users/")]
-        public async Task<IActionResult> GetAllUsers()
-        {
-            try {
-                return Ok(_userService.GetAllUsers());
             }
             catch (Exception e) {
                 return BadRequest(e.Message);

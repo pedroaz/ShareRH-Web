@@ -13,12 +13,10 @@ namespace PetBook.Application.Controllers
     [ApiController]
     public class PetsController : ControllerBase
     {
-        private readonly ILogger<PetsController> _logger;
         private readonly IPetService _petService;
 
-        public PetsController(ILogger<PetsController> logger, IPetService petService)
+        public PetsController(IPetService petService)
         {
-            _logger = logger;
             _petService = petService;
         }
 
@@ -69,5 +67,22 @@ namespace PetBook.Application.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        /* 
+         * Exercício: Criar o endpoint que atualiza a idade do pet
+         1. Anotações na classe
+         2. Receber os parâmetros no body
+         3. Usar o serviço (IPetService) para fazer o update - UpdatePetAge
+         4. Usar o postman para fazer o update de um PET
+         */
+
+        //public async Task<IActionResult> Update()
+        //{
+        //    try {
+                
+        //    }
+        //    catch (Exception e) {
+        //    }
+        //}
     }
 }
