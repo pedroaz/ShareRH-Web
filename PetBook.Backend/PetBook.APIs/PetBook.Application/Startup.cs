@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetBook.Infrastructure.Repository;
+using PetBook.Services.ReportsServices;
 
 namespace PetBook.Application
 {
@@ -35,6 +37,8 @@ namespace PetBook.Application
         {
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IReportsService, ReportsService>();
+            services.AddScoped<IRepository, CloudRepository>();
             services.AddSwaggerGen();
             services.AddControllers();
             services.AddSignalR();
