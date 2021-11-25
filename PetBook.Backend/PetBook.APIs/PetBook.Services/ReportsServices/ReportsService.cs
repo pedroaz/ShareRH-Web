@@ -24,23 +24,11 @@ namespace PetBook.Services.ReportsServices
         public async Task<Report> GenerateReport()
         {
             var report = new Report();
-            report.GenerateBasicReportContent(GetPetCount(), GetPetAverageAge());
+            
             _repository.SaveFile(report.Content, report.ReportName);
 
             return report;
         }
 
-        private int GetPetCount()
-        {
-            var pets = _petBookDatabaseContext.Pets.ToList();
-            return pets.Count();
-        }
-
-        private int GetPetAverageAge()
-        {
-            var pets = _petBookDatabaseContext.Pets.ToList();
-            var petsAge = pets.Select(_ => _.Age);
-            return petsAge.Sum() / pets.Count();
-        }
     }
 }

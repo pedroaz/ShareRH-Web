@@ -10,9 +10,5 @@ namespace PetBook.Domain.ReportsDomain
 
         public string Content { get; set; }
 
-        public void GenerateBasicReportContent(int petCount, int petAverageAge)
-        {
-            Content = $"The current pet count is {petCount} with an average age of {petAverageAge}";
-        }
     }
 }
