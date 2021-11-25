@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private http : HttpClient) { 
     this.hubConnection = new HubConnectionBuilder()
-    .withUrl("https://localhost:5001/petBookHub")
+    .withUrl("https://petbookapplication20211124143659.azurewebsites.net/petBookHub")
     .build();
 
     this.hubConnection.start();
@@ -34,11 +34,11 @@ export class HomePageComponent implements OnInit {
   }
 
   refresh(){
-    this.http.get<Pet[]>("https://localhost:5001/pets").subscribe(result => {
+    this.http.get<Pet[]>("https://petbookapplication20211124143659.azurewebsites.net/pets").subscribe(result => {
       this.pets = result;
     });
 
-    this.http.get<User[]>("https://localhost:5001/users").subscribe(result => {
+    this.http.get<User[]>("https://petbookapplication20211124143659.azurewebsites.net/users").subscribe(result => {
       this.users = result;
     });
   }

@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   login(){
-    this.http.post("https://localhost:5001/users/auth", {
+    this.http.post("https://petbookapplication20211124143659.azurewebsites.net/users/auth", {
       name: this.username,
       password: this.password
     }).subscribe(response => {

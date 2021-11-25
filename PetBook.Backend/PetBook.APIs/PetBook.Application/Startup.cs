@@ -39,23 +39,28 @@ namespace PetBook.Application
             services.AddControllers();
             services.AddSignalR();
 
-            services.AddAuthentication(options => {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options => {
-                options.TokenValidationParameters = new TokenValidationParameters() {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = "https://localhost:5001",
-                    ValidAudience = "https://localhost:5001",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsMySuperSecretKey@123"))
-                };
-            });
-            
+                        ValidIssuer = "https://sharerh.z13.web.core.windows.net",
+                        ValidAudience = "https://sharerh.z13.web.core.windows.net",
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ThisIsMySuperSecretKey@123"))
+                    };
+                });
+
+
             SetupDatabase(services);
             
             services.AddCors(options => {
@@ -63,6 +68,7 @@ namespace PetBook.Application
                                   builder => {
                                       builder.AllowAnyHeader();
                                       builder.AllowAnyMethod();
+                                      builder.WithOrigins("https://sharerh.z13.web.core.windows.net");
                                       builder.WithOrigins("http://localhost:4200");
                                       builder.AllowCredentials();
                                   });
